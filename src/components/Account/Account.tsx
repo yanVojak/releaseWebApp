@@ -15,11 +15,22 @@ const Account = () => {
     window.Telegram.WebApp.BackButton.onClick(handleBack);
   }, [handleBack]);
 
+  useEffect(() => {
+    window.Telegram.WebApp.BackButton.show();
+  }, []);
+
   useEffect(
     () => () => {
       window.Telegram.WebApp.BackButton.offClick(handleBack);
     },
     [handleBack]
+  );
+
+  useEffect(
+    () => () => {
+      window.Telegram.WebApp.BackButton.hide();
+    },
+    []
   );
 
   // const tg = window.Telegram.WebApp;

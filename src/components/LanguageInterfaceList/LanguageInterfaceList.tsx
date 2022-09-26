@@ -45,11 +45,13 @@ export const LanguagePracticeList: React.FC<ILevelListProps> = ({
 
   useEffect(() => {
     window.Telegram.WebApp.BackButton.onClick(handleOpenAccount);
+    window.Telegram.WebApp.BackButton.show();
   }, [handleOpenAccount]);
 
   useEffect(
     () => () => {
       window.Telegram.WebApp.BackButton.offClick(handleOpenAccount);
+      window.Telegram.WebApp.BackButton.hide();
     },
     [handleOpenAccount]
   );
@@ -62,7 +64,7 @@ export const LanguagePracticeList: React.FC<ILevelListProps> = ({
           label={lang}
           onChange={changeLanguage}
           isSelected={lang === currentLanguage}
-          onClick={handleClearSearchString}
+          onClick={handleClearSearchString} 
         />
       ))}
 
