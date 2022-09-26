@@ -205,7 +205,7 @@ interface MainButton {
    */
   onClick(callback: Function): MainButton;
 
-  offClick(callback: Function) : MainButton;
+  offClick(callback: Function): MainButton;
   /**
    * A method to make the button visible.
    */

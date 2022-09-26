@@ -1,4 +1,5 @@
 import react, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { RadioItem } from "../../components/RadioItem/RadioItem";
 
 interface ILevelListProps {
@@ -36,6 +37,22 @@ export const LanguagePracticeList: React.FC<ILevelListProps> = ({
     onChangeLanguage(currentLanguage);
   }, [currentLanguage]);
 
+  const navigate = useNavigate();
+
+  const handleOpenAccount = useCallback(() => {
+    navigate("/account");
+  }, [navigate]);
+
+  useEffect(() => {
+    window.Telegram.WebApp.BackButton.onClick(handleOpenAccount);
+  }, [handleOpenAccount]);
+
+  useEffect(
+    () => () => {
+      window.Telegram.WebApp.BackButton.offClick(handleOpenAccount);
+    },
+    [handleOpenAccount]
+  );
   return (
     <div>
       {filteredLanguages.map((lang) => (
@@ -48,6 +65,8 @@ export const LanguagePracticeList: React.FC<ILevelListProps> = ({
           onClick={handleClearSearchString}
         />
       ))}
+
+      <button onClick={handleOpenAccount}>acc</button>
     </div>
   );
 };
