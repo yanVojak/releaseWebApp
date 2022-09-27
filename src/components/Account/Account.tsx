@@ -1,4 +1,4 @@
-import react, { useCallback, useEffect } from "react";
+import react, { useCallback, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import {
   ILevelListProps,
@@ -49,6 +49,12 @@ const Account = () => {
     }, 2000);
   }, []);
 
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    setUrl(window.location.href)
+  }, [setUrl])
+
   // const tg = window.Telegram.WebApp;
 
   // const handleClose = useCallback(() => {
@@ -93,6 +99,7 @@ const Account = () => {
   return (
     <div className={styles.container}>
       <h2>Account</h2>
+      <h2>{url}</h2>
       {/* <div className="item">
         <span>Practice language: English</span>
         <button onClick={handleChangeLanguage}>change</button>
