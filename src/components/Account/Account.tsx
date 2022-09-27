@@ -1,6 +1,9 @@
 import react, { useCallback, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { ILevelListProps, LanguagePractice } from "../PracticeLanguage/PracticeLanguage";
+import {
+  ILevelListProps,
+  LanguagePractice,
+} from "../PracticeLanguage/PracticeLanguage";
 import styles from "./styles.module.scss";
 
 const Account = () => {
@@ -9,7 +12,6 @@ const Account = () => {
   const handleBack = useCallback(() => {
     navigate("/");
   }, [navigate]);
-
 
   useEffect(() => {
     window.Telegram.WebApp.BackButton.onClick(handleBack);
@@ -34,16 +36,18 @@ const Account = () => {
   );
 
   const go = useCallback(() => {
-    navigate('languages')
-  }, [])
+    navigate("languages");
+  }, []);
 
   const handleClose = useCallback(() => {
     let idTimout: ReturnType<typeof setTimeout>;
 
+
     idTimout = setTimeout(() => {
       window.Telegram.WebApp.close();
-    }, 2000)
-  }, [])
+      console.log('test');
+    }, 2000);
+  }, []);
 
   // const tg = window.Telegram.WebApp;
 
@@ -116,7 +120,11 @@ const Account = () => {
   </div> */}
       <button onClick={handleBack}>back</button>
       <button onClick={go}>go</button>
-      <button onClick={handleClose}>close</button>
+      <button onClick={handleClose}>
+        <a href="https://www.google.com/" target="_blank">
+          redirect and close
+        </a>
+      </button>
     </div>
   );
 };
