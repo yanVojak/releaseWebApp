@@ -1,19 +1,20 @@
 import React from "react";
-import react, { ReactComponentElement, useEffect, useRef } from "react";
 import styles from "./styles.module.scss";
 
 interface ISearchBoxProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  text: string;
+  value: string;
 }
 
-const SearchBox: React.FC<ISearchBoxProps> = ({ text, onChange }) => {
+const SearchBox: React.FC<ISearchBoxProps> = ({ value, onChange }) => {
+
+
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container}`}>
       <input
+      className={styles.input}
+        value={value}
         type="text"
-        value={text}
-        className="search"
         onChange={onChange}
         placeholder={"search"}
       />
@@ -21,4 +22,4 @@ const SearchBox: React.FC<ISearchBoxProps> = ({ text, onChange }) => {
   );
 };
 
-export { SearchBox };
+export default React.memo(SearchBox);

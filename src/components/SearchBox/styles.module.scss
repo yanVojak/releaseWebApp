@@ -1,15 +1,6 @@
-* {
-  box-sizing: border-box;
-}
-
-.container {
-
-  :global {
-    .search {
-      background-color: transparent;
-      border: none;
-      padding: .5em;
-      width: 100%;
-    }
+:global {
+  :local(.input) {
+    width: 100%;
+    padding: 0.5em;
   }
 }

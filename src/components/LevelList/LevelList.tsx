@@ -1,5 +1,5 @@
 import react, { useCallback, useEffect, useState } from "react";
-import { RadioItem } from "../../components/RadioItem/RadioItem";
+import RadioItem  from "../../components/RadioItem/RadioItem";
 
 interface ILevelListProps {
   changeLevel: (level: string) => void;

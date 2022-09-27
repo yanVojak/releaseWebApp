@@ -1,12 +1,6 @@
 .container {
-  padding: 0.5em;
+  padding: .5em;
   border-bottom: 1px solid black;
-  display: block;
+  display: flex;
   cursor: pointer;
-
-  :global {
-    * {
-      cursor: pointer;
-    }
-  }
 }

@@ -1,13 +1,11 @@
-import React, { ChangeEvent, useCallback, useRef } from "react";
-import react from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 
 interface IRadioItemProps {
   radioGroupName: string;
   label: string;
-  isSelected?: boolean;
+  isSelected: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onClick?: () => void;
 }
 
 const RadioItem: React.FC<IRadioItemProps> = ({
@@ -15,11 +13,9 @@ const RadioItem: React.FC<IRadioItemProps> = ({
   label,
   isSelected,
   onChange,
-  onClick
 }) => {
-
   return (
-    <label htmlFor={label} className={styles.container} onClick={onClick}>
+    <label htmlFor={label} className={styles.container}>
       <input
         onChange={onChange}
         type="radio"
@@ -33,5 +29,4 @@ const RadioItem: React.FC<IRadioItemProps> = ({
   );
 };
 
-export { RadioItem };
-
+export default React.memo(RadioItem);

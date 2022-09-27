@@ -1,13 +1,14 @@
 import react, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { RadioItem } from "../../components/RadioItem/RadioItem";
+import RadioItem  from "../RadioItem/RadioItem";
 
-interface ILevelListProps {
-  onChangeLanguage: (language: string) => void;
+export interface ILevelListProps {
+  onChangeLanguage?: (language: string) => void;
+  onClose?: () => void;
 }
 
-export const LanguagePracticeList: React.FC<ILevelListProps> = ({
+export const LanguagePractice: React.FC<ILevelListProps> = ({
   onChangeLanguage,
+  onClose
 }) => {
   const languages = ["English", "Spanish", "Belarussian"];
   const [currentLanguage, setCurrentLanguage] = useState("");
@@ -21,10 +22,6 @@ export const LanguagePracticeList: React.FC<ILevelListProps> = ({
     [setCurrentLanguage]
   );
 
-  const handleClearSearchString = useCallback(() => {
-    setSearchStringText("");
-  }, [setSearchStringText]);
-
   useEffect(() => {
     setFilteredLanguages(
       languages.filter((item) =>
@@ -34,27 +31,12 @@ export const LanguagePracticeList: React.FC<ILevelListProps> = ({
   }, [searchStringText]);
 
   useEffect(() => {
-    onChangeLanguage(currentLanguage);
+    if(onChangeLanguage) {
+      onChangeLanguage(currentLanguage);
+    }
+    setSearchStringText('');
   }, [currentLanguage]);
 
-  const navigate = useNavigate();
-
-  const handleOpenAccount = useCallback(() => {
-    navigate("/account");
-  }, [navigate]);
-
-  useEffect(() => {
-    window.Telegram.WebApp.BackButton.onClick(handleOpenAccount);
-    window.Telegram.WebApp.BackButton.show();
-  }, [handleOpenAccount]);
-
-  useEffect(
-    () => () => {
-      window.Telegram.WebApp.BackButton.offClick(handleOpenAccount);
-      window.Telegram.WebApp.BackButton.hide();
-    },
-    [handleOpenAccount]
-  );
   return (
     <div>
       {filteredLanguages.map((lang) => (
@@ -64,11 +46,8 @@ export const LanguagePracticeList: React.FC<ILevelListProps> = ({
           label={lang}
           onChange={changeLanguage}
           isSelected={lang === currentLanguage}
-          onClick={handleClearSearchString} 
         />
       ))}
-
-      <button onClick={handleOpenAccount}>acc</button>
     </div>
   );
 };

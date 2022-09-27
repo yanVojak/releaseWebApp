@@ -1,5 +1,5 @@
 import react, { useState, useCallback, useEffect, useRef } from "react";
-import { RadioItem } from "../../components/RadioItem/RadioItem";
+import RadioItem  from "../../components/RadioItem/RadioItem";
 
 interface ITopicLIstProps {
   onChangeTopic: (topic: string) => void;
@@ -44,11 +44,8 @@ export const TopicList: React.FC<ITopicLIstProps> = ({ onChangeTopic }) => {
 
   useEffect(() => {
     onChangeTopic(currentTopic);
+    setSearchStringText('');
   }, [currentTopic]);
-
-  const handleClearSearchString = useCallback(() => {
-    setSearchStringText("");
-  }, [setSearchStringText]);
 
   useEffect(() => {
     setFilteredTopics(
@@ -103,7 +100,6 @@ export const TopicList: React.FC<ITopicLIstProps> = ({ onChangeTopic }) => {
             label={topic}
             onChange={changeTopic}
             isSelected={topic === currentTopic}
-            onClick={handleClearSearchString}
           />
           {currentTopic === topic
             ? questions.map((question) => (

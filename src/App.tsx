@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { DateAndTime } from "./components/DateAndTime/DateAndTime";
 import { Account } from "./components/Account/Account";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { LanguagePracticeList } from "./components/LanguageInterfaceList/LanguageInterfaceList";
+import { ChangePracticeLanguage } from "./components/ChangeLanguage/ChangeLanguage";
+import { LevelList } from "./components/LevelList/LevelList";
 
 function App() {
   const navigate = useNavigate();
@@ -12,16 +11,16 @@ function App() {
   useEffect(() => {
     navigate("/account");
   }, []);
+
   return (
     <div className="App">
       <Routes>
-        <Route
-          path="/"
-          element={<LanguagePracticeList onChangeLanguage={() => {}} />}
-        />
-        <Route path="/account" element={<Account />} />
-        <Route path="/date" element={<DateAndTime changeDate={() => {}} />} />
+      <Route path="/" element={<Account />} />
+        <Route path="account" element={<Account />} />
       </Routes>
+      <ChangePracticeLanguage />
+      <br />
+      <LevelList changeLevel={() => {}} />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import react from "react";
-import { RadioItem } from "../../components/RadioItem/RadioItem";
 import { MeetingItem } from "../MeetingItem/MeetingItem";
 
 export const MeetingList = () => {
