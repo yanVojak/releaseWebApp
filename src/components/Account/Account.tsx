@@ -19,6 +19,8 @@ const Account = () => {
 
   useEffect(() => {
     window.Telegram.WebApp.BackButton.show();
+    window.Telegram.WebApp.MainButton.show();
+    window.Telegram.WebApp.MainButton.showProgress(true);
   }, []);
 
   useEffect(
