@@ -1,10 +1,9 @@
 import react, { useState, useCallback, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import RadioItem  from "../../components/RadioItem/RadioItem";
+import { MEETING_PATH } from "../../routing/routing.constants";
 
-interface ITopicLIstProps {
-  onChangeTopic: (topic: string) => void;
-}
-export const TopicList: React.FC<ITopicLIstProps> = ({ onChangeTopic }) => {
+export const TopicList = () => {
   const topis = [
     "Art",
     "Cinema",
@@ -43,7 +42,6 @@ export const TopicList: React.FC<ITopicLIstProps> = ({ onChangeTopic }) => {
   );
 
   useEffect(() => {
-    onChangeTopic(currentTopic);
     setSearchStringText('');
   }, [currentTopic]);
 
@@ -93,6 +91,7 @@ export const TopicList: React.FC<ITopicLIstProps> = ({ onChangeTopic }) => {
 
   return (
     <div>
+      <Link to={replaceInUrl(MEETING_PATH, [':id', '1'])}><button>lelvel</button></Link>
       {filteredTopics.map((topic) => (
         <div key={topic}>
           <RadioItem
@@ -113,3 +112,10 @@ export const TopicList: React.FC<ITopicLIstProps> = ({ onChangeTopic }) => {
     </div>
   );
 };
+
+// type Replacement = [string, string | number | boolean];
+
+
+export function replaceInUrl(url: string, replacementPairs: string[]): string {
+  return url.replace(replacementPairs[0], replacementPairs[1])
+}

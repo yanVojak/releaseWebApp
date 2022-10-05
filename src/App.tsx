@@ -1,26 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./App.css";
 import { Account } from "./components/Account/Account";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { ChangePracticeLanguage } from "./components/ChangeLanguage/ChangeLanguage";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { ChangePracticeLanguage } from "./components/LanguageList/ChangeLanguage";
 import { LevelList } from "./components/LevelList/LevelList";
+import MainRouter from "./routing/MainRouter/MainRouter";
 
 function App() {
   const navigate = useNavigate();
+  const routing = useMemo(() => {
+    return <MainRouter />
+  }, [])
 
   useEffect(() => {
-    navigate("/account");
+    navigate("/");
   }, []);
 
   return (
     <div className="App">
-      <Routes>
-      <Route path="/" element={<Account />} />
-        <Route path="account" element={<Account />} />
-      </Routes>
-      <ChangePracticeLanguage />
-      <br />
-      <LevelList changeLevel={() => {}} />
+      {routing}
+      {/* <ChangePracticeLanguage /> */}
+      {/* <br /> */}
+      {/* <LevelList changeLevel={() => {}} /> */}
     </div>
   );
 }

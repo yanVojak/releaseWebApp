@@ -1,5 +1,6 @@
 import react, { useCallback, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { CREATE_TOPICS_PATH } from "../../routing/routing.constants";
 import {
   ILevelListProps,
   LanguagePractice,
@@ -38,7 +39,7 @@ const Account = () => {
   );
 
   const go = useCallback(() => {
-    navigate("languages");
+    navigate(CREATE_TOPICS_PATH);
   }, []);
 
   const handleClose = useCallback(() => {
@@ -100,6 +101,11 @@ const Account = () => {
 
   return (
     <div className={styles.container}>
+      <div>
+        {
+          window.Telegram.WebApp.initData
+        }
+      </div>
       <h2>Account</h2>
       <h2>{url}</h2>
       {/* <div className="item">

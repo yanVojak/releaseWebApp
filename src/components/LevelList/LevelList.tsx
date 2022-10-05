@@ -1,13 +1,14 @@
 import react, { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router";
 import RadioItem  from "../../components/RadioItem/RadioItem";
 
-interface ILevelListProps {
-  changeLevel: (level: string) => void;
-}
 
-export const LevelList: React.FC<ILevelListProps> = ({ changeLevel }) => {
+export const LevelList = () => {
   const levels = ["Beginer", "Pre-intemediate", "Intermediate"];
   const [currentLevel, setCurrentLevel] = useState(levels[1]);
+  const {id} = useParams();
+  console.log(id);
+  
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,10 +16,6 @@ export const LevelList: React.FC<ILevelListProps> = ({ changeLevel }) => {
     },
     [setCurrentLevel]
   );
-
-  useEffect(() => {
-    changeLevel(currentLevel);
-  }, [currentLevel, changeLevel]);
 
   return (
     <div>
