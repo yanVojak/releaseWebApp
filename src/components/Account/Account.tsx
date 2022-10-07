@@ -22,14 +22,19 @@ const Account = () => {
     enableMainButton,
     disabeleMainButton,
     setTextMainButton,
-  }: MainButtonType = useTelegramMainButton(true, false, "set visible", handleGo);
+  }: MainButtonType = useTelegramMainButton(false, false, "set visible", handleGo);
 
   useEffect(() => {
     if(isVisible) {
+      showMainButton()
       enableMainButton();
       setTextMainButton('ready')
+    } else {
+      disabeleMainButton();
+      hideMainButton();
     }
   }, [isVisible])
+
 
   // useEffect(() => {
   //   window.Telegram.WebApp.BackButton.onClick(handleBack);
@@ -119,7 +124,7 @@ const Account = () => {
     <div className={styles.container}>
       <div>{window.Telegram.WebApp.initData}</div>
       <h2>Account</h2>
-      <button onClick={() => setIsVisible(true)}>set visible</button>
+      <button onClick={() => setIsVisible((prev) => !prev )}>set visible</button>
       {/* <div className="item">
         <span>Practice language: English</span>
         <button onClick={handleChangeLanguage}>change</button>

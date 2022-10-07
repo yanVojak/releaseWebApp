@@ -108,7 +108,7 @@ export const TopicList = () => {
 
   return (
     <div>
-      <Link to={replaceInUrl(MEETING_PATH, [':id', '1'])}><button>lelvel</button></Link>
+      <button onClick={handleBack}>lelvel</button>
       {filteredTopics.map((topic) => (
         <div key={topic}>
           <RadioItem
