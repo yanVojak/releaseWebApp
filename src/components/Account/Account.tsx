@@ -17,23 +17,30 @@ const Account = () => {
     navigate("/topics");
   }, [navigate, test]);
 
+  // const {
+  //   hideMainButton,
+  //   showMainButton,
+  //   enableMainButton,
+  //   disabeleMainButton,
+  //   setTextMainButton,
+  //   setBackButtonOnClick
+  // }: MainButtonType = useTelegramMainButton(false, false, "set visible");
+
   const {
-    hideMainButton,
-    showMainButton,
-    enableMainButton,
-    disabeleMainButton,
-    setTextMainButton,
-    setBackButtonOnClick
-  }: MainButtonType = useTelegramMainButton(false, false, "set visible");
+    setBackButtonOnClick,
+    setMainButtonParams,
+    setLoadingMainButton
+  } = useTelegramMainButton(false, false, "set visible");
+
 
   useEffect(() => {
     if(isVisible) {
-      showMainButton()
-      enableMainButton();
-      setTextMainButton('ready')
+
+      setMainButtonParams({'is_visible': true, 'is_active': true, 'text': 'true'})
     } else {
-      disabeleMainButton();
-      hideMainButton();
+      setMainButtonParams({'is_visible': false, 'is_active': false, 'text': 'false'})
+      // disabeleMainButton();
+      // hideMainButton();
     }
   }, [isVisible])
 

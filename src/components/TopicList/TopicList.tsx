@@ -42,19 +42,19 @@ export const TopicList = () => {
     navigate('/');
   }, [navigate])
 
-  const {
-    hideMainButton,
-    showMainButton,
-    enableMainButton,
-    disabeleMainButton,
-    setTextMainButton,
-    setBackButtonOnClick
-  } = useTelegramMainButton(true, true, "back");
+  // const {
+  //   hideMainButton,
+  //   showMainButton,
+  //   enableMainButton,
+  //   disabeleMainButton,
+  //   setTextMainButton,
+  //   setBackButtonOnClick
+  // } = useTelegramMainButton(true, true, "back");
 
 
-  useEffect(() => {
-    setBackButtonOnClick(handleBack)
-  }, [handleBack, setBackButtonOnClick])
+  // useEffect(() => {
+  //   setBackButtonOnClick(handleBack)
+  // }, [handleBack, setBackButtonOnClick])
 
   const changeTopic = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
