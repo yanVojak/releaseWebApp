@@ -1,5 +1,6 @@
 import react, { useCallback, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import useTelegramMainButton from "../../hooks/useTgMainButton";
 import { CREATE_TOPICS_PATH } from "../../routing/routing.constants";
 import {
   ILevelListProps,
@@ -9,54 +10,67 @@ import styles from "./styles.module.scss";
 
 const Account = () => {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleBack = useCallback(() => {
     navigate("/");
   }, [navigate]);
 
-  useEffect(() => {
-    window.Telegram.WebApp.BackButton.onClick(handleBack);
-  }, [handleBack]);
+  const {
+    hideMainButton,
+    showMainButton,
+    enableMainButton,
+    disabeleMainButton,
+    setTextMainButton,
+  } = useTelegramMainButton(true, false, "continue", handleBack);
 
   useEffect(() => {
-    window.Telegram.WebApp.BackButton.show();
-    window.Telegram.WebApp.MainButton.show();
-    window.Telegram.WebApp.MainButton.showProgress(true);
-  }, []);
+    enableMainButton();
+    setTextMainButton('ready')
+  }, [isVisible])
 
-  useEffect(
-    () => () => {
-      window.Telegram.WebApp.BackButton.offClick(handleBack);
-    },
-    [handleBack]
-  );
+  // useEffect(() => {
+  //   window.Telegram.WebApp.BackButton.onClick(handleBack);
+  // }, [handleBack]);
 
-  useEffect(
-    () => () => {
-      window.Telegram.WebApp.BackButton.hide();
-    },
-    []
-  );
+  // useEffect(() => {
+  //   window.Telegram.WebApp.BackButton.show();
+  //   window.Telegram.WebApp.MainButton.show();
+  //   window.Telegram.WebApp.MainButton.showProgress(true);
+  // }, []);
 
-  const go = useCallback(() => {
-    navigate(CREATE_TOPICS_PATH);
-  }, []);
+  // useEffect(
+  //   () => () => {
+  //     window.Telegram.WebApp.BackButton.offClick(handleBack);
+  //   },
+  //   [handleBack]
+  // );
 
-  const handleClose = useCallback(() => {
-    let idTimout: ReturnType<typeof setTimeout>;
+  // useEffect(
+  //   () => () => {
+  //     window.Telegram.WebApp.BackButton.hide();
+  //   },
+  //   []
+  // );
 
+  // const go = useCallback(() => {
+  //   navigate(CREATE_TOPICS_PATH);
+  // }, []);
 
-    idTimout = setTimeout(() => {
-      window.Telegram.WebApp.close();
-      console.log('test');
-    }, 2000);
-  }, []);
+  // const handleClose = useCallback(() => {
+  //   let idTimout: ReturnType<typeof setTimeout>;
 
-  const [url, setUrl] = useState('');
+  //   idTimout = setTimeout(() => {
+  //     window.Telegram.WebApp.close();
+  //     console.log('test');
+  //   }, 2000);
+  // }, []);
 
-  useEffect(() => {
-    setUrl(window.location.href)
-  }, [setUrl])
+  // const [url, setUrl] = useState('');
+
+  // useEffect(() => {
+  //   setUrl(window.location.href)
+  // }, [setUrl])
 
   // const tg = window.Telegram.WebApp;
 
@@ -101,13 +115,9 @@ const Account = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        {
-          window.Telegram.WebApp.initData
-        }
-      </div>
+      <div>{window.Telegram.WebApp.initData}</div>
       <h2>Account</h2>
-      <h2>{url}</h2>
+      <button onClick={() => setIsVisible(true)}>set visible</button>
       {/* <div className="item">
         <span>Practice language: English</span>
         <button onClick={handleChangeLanguage}>change</button>
@@ -134,12 +144,11 @@ const Account = () => {
         </div>
   </div> */}
       <button onClick={handleBack}>back</button>
-      <button onClick={go}>go</button>
-      <button onClick={handleClose}>
-        <a href="https://www.google.com/" target="_blank">
-          redirect and close
-        </a>
-      </button>
+      {/* <button onClick={go}>go</button> */}
+      {/* <button onClick={handleClose}> */}
+        {/* <a href="https://www.google.com/" target="_blank"> */}
+          {/* redirect and close */}
+        {/* </a> */}
     </div>
   );
 };
