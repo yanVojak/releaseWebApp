@@ -11,10 +11,11 @@ import styles from "./styles.module.scss";
 const Account = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
+  const [test, setTest] = useState(9);
 
   const handleGo = useCallback(() => {
     navigate("/topics");
-  }, [navigate]);
+  }, [navigate, test]);
 
   const {
     hideMainButton,
@@ -22,7 +23,8 @@ const Account = () => {
     enableMainButton,
     disabeleMainButton,
     setTextMainButton,
-  }: MainButtonType = useTelegramMainButton(false, false, "set visible", handleGo);
+    setBackButtonOnClick
+  }: MainButtonType = useTelegramMainButton(false, false, "set visible");
 
   useEffect(() => {
     if(isVisible) {
@@ -36,6 +38,9 @@ const Account = () => {
   }, [isVisible])
 
 
+  useEffect(() => {
+    setBackButtonOnClick(handleGo)
+  }, [handleGo, setBackButtonOnClick])
   // useEffect(() => {
   //   window.Telegram.WebApp.BackButton.onClick(handleBack);
   // }, [handleBack]);
@@ -125,6 +130,7 @@ const Account = () => {
       <div>{window.Telegram.WebApp.initData}</div>
       <h2>Account</h2>
       <button onClick={() => setIsVisible((prev) => !prev )}>set visible</button>
+      <button onClick={() =>setTest((prev) => prev + 1 )}> set test</button>
       {/* <div className="item">
         <span>Practice language: English</span>
         <button onClick={handleChangeLanguage}>change</button>
