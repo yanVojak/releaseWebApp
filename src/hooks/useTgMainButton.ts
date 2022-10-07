@@ -46,14 +46,23 @@ const useTelegramMainButton = (
       hideMainButton();
     }
 
-    if (isEnabledMainButton && !window.Telegram.WebApp.MainButton.isActive) {
+    if (isEnabledMainButton) {
       enableMainButton();
     } else {
       disabeleMainButton();
     }
 
     window.Telegram.WebApp.MainButton.setText(defaultTextMainButton);
-  }, [setBackButton, onClick, showMainButton, isVisibleMainButton]);
+  }, [
+    setBackButton,
+    onClick,
+    showMainButton,
+    enableMainButton,
+    disabeleMainButton,
+    isVisibleMainButton,
+    isEnabledMainButton,
+    defaultTextMainButton,
+  ]);
 
   return {
     hideMainButton,
