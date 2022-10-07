@@ -1,6 +1,7 @@
 import react, { useState, useCallback, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RadioItem  from "../../components/RadioItem/RadioItem";
+import useTelegramMainButton from "../../hooks/useTgMainButton";
 import { MEETING_PATH } from "../../routing/routing.constants";
 
 export const TopicList = () => {
@@ -32,6 +33,22 @@ export const TopicList = () => {
   const [searchStringText, setSearchStringText] = useState("");
   const [questions, setQuestions] = useState<string[]>([]);
   const questionsRef = useRef<HTMLDivElement>(null);
+
+  const navigate = useNavigate();
+
+  const handleBack = useCallback(() => {
+    navigate('/');
+  }, [navigate])
+
+  const {
+    hideMainButton,
+    showMainButton,
+    enableMainButton,
+    disabeleMainButton,
+    setTextMainButton,
+  } = useTelegramMainButton(true, true, "back", handleBack);
+
+
 
   const changeTopic = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

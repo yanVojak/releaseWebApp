@@ -5,6 +5,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { ChangePracticeLanguage } from "./components/LanguageList/ChangeLanguage";
 import { LevelList } from "./components/LevelList/LevelList";
 import MainRouter from "./routing/MainRouter/MainRouter";
+import { TopicList } from "./components/TopicList/TopicList";
 
 function App() {
   const navigate = useNavigate();
@@ -18,7 +19,11 @@ function App() {
 
   return (
     <div className="App">
-      {routing}
+      <Routes>
+      <Route path="/" element={<Account />} />
+      <Route path="/topics" element={<TopicList />} />
+      </Routes>
+      {/* {routing} */}
       {/* <ChangePracticeLanguage /> */}
       {/* <br /> */}
       {/* <LevelList changeLevel={() => {}} /> */}

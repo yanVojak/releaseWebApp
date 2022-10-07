@@ -1,6 +1,6 @@
 import react, { useCallback, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import useTelegramMainButton from "../../hooks/useTgMainButton";
+import useTelegramMainButton, { MainButtonType } from "../../hooks/useTgMainButton";
 import { CREATE_TOPICS_PATH } from "../../routing/routing.constants";
 import {
   ILevelListProps,
@@ -12,8 +12,8 @@ const Account = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleBack = useCallback(() => {
-    navigate("/");
+  const handleGo = useCallback(() => {
+    navigate("/topics");
   }, [navigate]);
 
   const {
@@ -22,7 +22,7 @@ const Account = () => {
     enableMainButton,
     disabeleMainButton,
     setTextMainButton,
-  } = useTelegramMainButton(true, false, "continue", handleBack);
+  }: MainButtonType = useTelegramMainButton(true, false, "set visible", handleGo);
 
   useEffect(() => {
     if(isVisible) {
@@ -145,7 +145,7 @@ const Account = () => {
           </label>
         </div>
   </div> */}
-      <button onClick={handleBack}>back</button>
+      <button onClick={handleGo}>go</button>
       {/* <button onClick={go}>go</button> */}
       {/* <button onClick={handleClose}> */}
         {/* <a href="https://www.google.com/" target="_blank"> */}

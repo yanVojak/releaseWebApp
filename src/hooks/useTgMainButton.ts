@@ -3,8 +3,8 @@ import { useCallback, useEffect } from "react";
 const useTelegramMainButton = (
   isVisibleMainButton: boolean,
   isEnabledMainButton: boolean,
-  defaultTextMainButton : string,
-  onClick: () => void,
+  defaultTextMainButton: string,
+  onClick: () => void
 ) => {
   const setBackButton = useCallback((fn: () => void) => {
     window.Telegram.WebApp.BackButton.onClick(fn);
@@ -12,7 +12,6 @@ const useTelegramMainButton = (
 
   useEffect(
     () => () => {
-      window.Telegram.WebApp.MainButton.offClick(onClick);
       window.Telegram.WebApp.MainButton.offClick(onClick);
     },
     [onClick]
@@ -41,7 +40,7 @@ const useTelegramMainButton = (
   useEffect(() => {
     setBackButton(onClick);
 
-    if (isVisibleMainButton && !window.Telegram.WebApp.MainButton.isVisible) {
+    if (isVisibleMainButton) {
       showMainButton();
     } else {
       hideMainButton();
@@ -66,13 +65,6 @@ const useTelegramMainButton = (
 };
 
 export default useTelegramMainButton;
-
-type MainButton = {
-  isVisibleMainButton: boolean;
-  isEnabledMainButton: boolean;
-  defaultTextMainButton: string;
-  onClick: () => void;
-};
 
 export type MainButtonType = {
   hideMainButton: () => void;
