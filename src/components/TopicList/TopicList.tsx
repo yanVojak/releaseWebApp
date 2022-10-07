@@ -36,11 +36,21 @@ export const TopicList = () => {
 
   const navigate = useNavigate();
 
+  const {
+    setBackButtonOnClick,
+    setMainButtonParams,
+    setLoadingMainButton
+  } = useTelegramMainButton(true, true, "back");
+
 
   const handleBack = useCallback(() => {
 
     navigate('/');
   }, [navigate])
+
+  useEffect(() => {
+    setBackButtonOnClick(handleBack)
+  }, [handleBack])
 
   // const {
   //   hideMainButton,

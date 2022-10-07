@@ -1,6 +1,6 @@
 import react, { useCallback, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import useTelegramMainButton, { MainButtonType } from "../../hooks/useTgMainButton";
+import useTelegramMainButton from "../../hooks/useTgMainButton";
 import { CREATE_TOPICS_PATH } from "../../routing/routing.constants";
 import {
   ILevelListProps,

@@ -32,7 +32,7 @@ const useTelegramMainButton = (
       is_visible: isVisibleMainButton,
       text: defaultTextMainButton,
     });
-  }, [isEnabledMainButton, isVisibleMainButton, defaultTextMainButton]);
+  }, [isEnabledMainButton, isVisibleMainButton, defaultTextMainButton, setMainButtonParams]);
 
   return {
     setBackButtonOnClick,
