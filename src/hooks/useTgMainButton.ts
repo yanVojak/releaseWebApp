@@ -6,7 +6,7 @@ const useTelegramMainButton = (
   isEnabledMainButton: boolean,
   defaultTextMainButton: string
 ): MainButtonType => {
-  const setBackButtonOnClick = useCallback((fn: () => void) => {
+  const setMainButtonOnClick = useCallback((fn: () => void) => {
     window.Telegram.WebApp.MainButton.onClick(fn);
     return fn;
   }, []);
@@ -21,9 +21,9 @@ const useTelegramMainButton = (
 
   useEffect(
     () => () => {
-      window.Telegram.WebApp.MainButton.offClick(() => setBackButtonOnClick);
+      window.Telegram.WebApp.MainButton.offClick(() => setMainButtonOnClick);
     },
-    [setBackButtonOnClick]
+    [setMainButtonOnClick]
   );
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const useTelegramMainButton = (
   }, [isEnabledMainButton, isVisibleMainButton, defaultTextMainButton, setMainButtonParams]);
 
   return {
-    setBackButtonOnClick,
+    setMainButtonOnClick,
     setMainButtonParams,
     setLoadingMainButton,
   };
@@ -44,7 +44,7 @@ const useTelegramMainButton = (
 export default useTelegramMainButton;
 
 type MainButtonType = {
-  setBackButtonOnClick: (fn: () => void) => void;
+  setMainButtonOnClick: (fn: () => void) => void;
   setMainButtonParams: (obj: MainButtonParams) => void;
   setLoadingMainButton: (state: boolean) => void
 };

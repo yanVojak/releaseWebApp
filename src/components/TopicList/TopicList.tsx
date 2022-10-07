@@ -1,6 +1,7 @@
 import react, { useState, useCallback, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import RadioItem  from "../../components/RadioItem/RadioItem";
+import RadioItem from "../../components/RadioItem/RadioItem";
+import useTgBackButton from "../../hooks/useTgBackButton";
 import useTelegramMainButton from "../../hooks/useTgMainButton";
 import { MEETING_PATH } from "../../routing/routing.constants";
 
@@ -36,21 +37,19 @@ export const TopicList = () => {
 
   const navigate = useNavigate();
 
-  const {
-    setBackButtonOnClick,
-    setMainButtonParams,
-    setLoadingMainButton
-  } = useTelegramMainButton(true, true, "back");
+  const { setMainButtonOnClick, setMainButtonParams, setLoadingMainButton } =
+    useTelegramMainButton(true, false, "confirm");
 
+  const { setBackButtonOnClick, showBackButton, hideBackButton } =
+    useTgBackButton(true);
 
   const handleBack = useCallback(() => {
-
-    navigate('/');
-  }, [navigate])
+    navigate("/");
+  }, [navigate]);
 
   useEffect(() => {
-    setBackButtonOnClick(handleBack)
-  }, [handleBack])
+    setBackButtonOnClick(handleBack);
+  }, [handleBack]);
 
   // const {
   //   hideMainButton,
@@ -60,7 +59,6 @@ export const TopicList = () => {
   //   setTextMainButton,
   //   setBackButtonOnClick
   // } = useTelegramMainButton(true, true, "back");
-
 
   // useEffect(() => {
   //   setBackButtonOnClick(handleBack)
@@ -75,7 +73,7 @@ export const TopicList = () => {
   );
 
   useEffect(() => {
-    setSearchStringText('');
+    setSearchStringText("");
   }, [currentTopic]);
 
   useEffect(() => {
@@ -148,7 +146,6 @@ export const TopicList = () => {
 
 // type Replacement = [string, string | number | boolean];
 
-
 export function replaceInUrl(url: string, replacementPairs: string[]): string {
-  return url.replace(replacementPairs[0], replacementPairs[1])
+  return url.replace(replacementPairs[0], replacementPairs[1]);
 }

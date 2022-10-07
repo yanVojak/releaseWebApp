@@ -1,5 +1,6 @@
 import react, { useCallback, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import useTgBackButton from "../../hooks/useTgBackButton";
 import useTelegramMainButton from "../../hooks/useTgMainButton";
 import { CREATE_TOPICS_PATH } from "../../routing/routing.constants";
 import {
@@ -27,11 +28,12 @@ const Account = () => {
   // }: MainButtonType = useTelegramMainButton(false, false, "set visible");
 
   const {
-    setBackButtonOnClick,
+    setMainButtonOnClick,
     setMainButtonParams,
     setLoadingMainButton
   } = useTelegramMainButton(false, false, "set visible");
 
+  useTgBackButton(false);
 
   useEffect(() => {
     if(isVisible) {
@@ -46,8 +48,8 @@ const Account = () => {
 
 
   useEffect(() => {
-    setBackButtonOnClick(handleGo)
-  }, [handleGo, setBackButtonOnClick])
+    setMainButtonOnClick(handleGo)
+  }, [handleGo, setMainButtonOnClick])
   // useEffect(() => {
   //   window.Telegram.WebApp.BackButton.onClick(handleBack);
   // }, [handleBack]);
