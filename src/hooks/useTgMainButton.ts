@@ -38,31 +38,28 @@ const useTelegramMainButton = (
   }, []);
 
   useEffect(() => {
-    setBackButton(onClick);
+    setTextMainButton(defaultTextMainButton)
+  }, [defaultTextMainButton])
 
-    if (isVisibleMainButton) {
-      showMainButton();
-    } else {
-      hideMainButton();
-    }
-
+  useEffect(() => {
     if (isEnabledMainButton) {
       enableMainButton();
     } else {
       disabeleMainButton();
     }
+  }, [isEnabledMainButton, enableMainButton, disabeleMainButton]);
 
-    window.Telegram.WebApp.MainButton.setText(defaultTextMainButton);
-  }, [
-    setBackButton,
-    onClick,
-    showMainButton,
-    enableMainButton,
-    disabeleMainButton,
-    isVisibleMainButton,
-    isEnabledMainButton,
-    defaultTextMainButton,
-  ]);
+  useEffect(() => {
+    if (isVisibleMainButton) {
+      showMainButton();
+    } else {
+      hideMainButton();
+    }
+  }, [isVisibleMainButton, showMainButton, hideMainButton])
+
+  useEffect(() => {
+    setBackButton(onClick);
+  }, [onClick, setBackButton])
 
   return {
     hideMainButton,
