@@ -7,8 +7,8 @@ const useTelegramMainButton = (
   onClick: () => void
 ) => {
 
-  const setBackButton = useCallback((fn: () => void) => {
-    window.Telegram.WebApp.BackButton.onClick(fn);
+  const setMainButton = useCallback((fn: () => void) => {
+    window.Telegram.WebApp.MainButton.onClick(fn);
   }, []);
 
   useEffect(
@@ -59,8 +59,8 @@ const useTelegramMainButton = (
   }, [isVisibleMainButton, showMainButton, hideMainButton])
 
   useEffect(() => {
-    setBackButton(onClick);
-  }, [onClick, setBackButton])
+    setMainButton(onClick);
+  }, [onClick, setMainButton])
   
 
   return {
