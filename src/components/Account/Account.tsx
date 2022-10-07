@@ -25,8 +25,10 @@ const Account = () => {
   } = useTelegramMainButton(true, false, "continue", handleBack);
 
   useEffect(() => {
-    enableMainButton();
-    setTextMainButton('ready')
+    if(isVisible) {
+      enableMainButton();
+      setTextMainButton('ready')
+    }
   }, [isVisible])
 
   // useEffect(() => {
