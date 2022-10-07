@@ -36,9 +36,9 @@ const Account = () => {
   useEffect(() => {
     if(isVisible) {
 
-      setMainButtonParams({'is_visible': true, 'is_active': true, 'text': 'true'})
+      setMainButtonParams({is_visible: true, is_active: true, text: 'true'})
     } else {
-      setMainButtonParams({'is_visible': false, 'is_active': false, 'text': 'false'})
+      setMainButtonParams({is_visible: true, is_active: false, text: 'false'})
       // disabeleMainButton();
       // hideMainButton();
     }
