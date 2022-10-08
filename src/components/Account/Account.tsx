@@ -40,7 +40,7 @@ const Account = () => {
 
       setMainButtonParams({is_visible: true, is_active: true, text: 'true'})
     } else {
-      setMainButtonParams({is_visible: true, is_active: false, text: 'false'})
+      setMainButtonParams({is_visible: true, is_active: false})
       // disabeleMainButton();
       // hideMainButton();
     }

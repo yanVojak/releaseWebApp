@@ -16,8 +16,12 @@ const useTelegramMainButton = (
   }, []);
 
   const setMainButtonParams = useCallback((obj: MainButtonParams) => {
-    return window.Telegram.WebApp.MainButton.setParams(obj);
-  }, []);
+    if (!obj.text) {
+      window.Telegram.WebApp.MainButton.setParams({ ...obj, text: defaultTextMainButton });
+      return;
+    }
+    window.Telegram.WebApp.MainButton.setParams(obj);
+  }, [defaultTextMainButton]);
 
   useEffect(
     () => () => {
