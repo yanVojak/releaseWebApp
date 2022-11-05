@@ -1,41 +1,67 @@
-import { useCallback, useEffect } from "react";
-import { MainButtonParams } from "../telegram/types";
+import { useCallback, useEffect, useState } from 'react';
 
-const useTelegramMainButton = (
+import { MainButtonParams } from '../telegram/types';
+
+type MainButtonType = {
+  setMainButtonOnClick: (fn: () => void) => void;
+  setMainButtonParams: (obj: MainButtonParams) => void;
+  setLoadingMainButton: (state: boolean) => void;
+};
+
+const useTgMainButton = (
   isVisibleMainButton: boolean,
   isEnabledMainButton: boolean,
-  defaultTextMainButton: string
+  defaultTextMainButton?: string,
 ): MainButtonType => {
-  const setMainButtonOnClick = useCallback((fn: () => void) => {
-    window.Telegram.WebApp.MainButton.onClick(fn);
-    return fn;
-  }, []);
+  // const [submitFunction, setSubmitFunction] = useState<() => void>();
 
-  const setLoadingMainButton = useCallback((state: boolean) => {
-    return window.Telegram.WebApp.MainButton.showProgress(state);
-  }, []);
+  const setMainButtonOnClick = useCallback(
+    (fn: () => void) => {
+      window.Telegram.WebApp.onEvent('mainButtonClicked', fn);
 
-  const setMainButtonParams = useCallback((obj: MainButtonParams) => {
-    if (!obj.text) {
-      window.Telegram.WebApp.MainButton.setParams({ ...obj, text: defaultTextMainButton });
-      return;
+    return () => {
+      window.Telegram.WebApp.offEvent('mainButtonClicked', fn)
     }
-    window.Telegram.WebApp.MainButton.setParams(obj);
-  }, [defaultTextMainButton]);
+    }, []);
 
-  useEffect(
-    () => () => {
-      window.Telegram.WebApp.MainButton.offClick(() => setMainButtonOnClick);
+  const setMainButtonParams = useCallback(
+    (obj: MainButtonParams) => {
+      if (!obj.text) {
+        window.Telegram.WebApp.MainButton.setParams({ ...obj, text: defaultTextMainButton });
+        return;
+      }
+
+      window.Telegram.WebApp.MainButton.setParams(obj);
     },
-    [setMainButtonOnClick]
+    [defaultTextMainButton],
+  );
+
+  const setLoadingMainButton = useCallback(
+    (state: boolean) => {
+      if (state) {
+        setMainButtonParams({ is_active: false });
+        window.Telegram.WebApp.MainButton.showProgress(state);
+      } else {
+        setMainButtonParams({ is_active: true });
+        window.Telegram.WebApp.MainButton.hideProgress();
+      }
+    },
+    [setMainButtonParams],
   );
 
   useEffect(() => {
-    setMainButtonParams({
-      is_active: isEnabledMainButton,
-      is_visible: isVisibleMainButton,
-      text: defaultTextMainButton,
-    });
+    if (defaultTextMainButton) {
+      setMainButtonParams({
+        is_active: isEnabledMainButton,
+        is_visible: isVisibleMainButton,
+        text: defaultTextMainButton,
+      });
+    } else {
+      setMainButtonParams({
+        is_active: isEnabledMainButton,
+        is_visible: isVisibleMainButton,
+      });
+    }
   }, [isEnabledMainButton, isVisibleMainButton, defaultTextMainButton, setMainButtonParams]);
 
   return {
@@ -45,10 +71,4 @@ const useTelegramMainButton = (
   };
 };
 
-export default useTelegramMainButton;
-
-type MainButtonType = {
-  setMainButtonOnClick: (fn: () => void) => void;
-  setMainButtonParams: (obj: MainButtonParams) => void;
-  setLoadingMainButton: (state: boolean) => void
-};
+export default useTgMainButton;

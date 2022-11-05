@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import "./App.css";
+import "./localization/i18n"
 import { Account } from "./components/Account/Account";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { ChangePracticeLanguage } from "./components/LanguageList/ChangeLanguage";
