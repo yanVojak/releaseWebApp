@@ -11,7 +11,8 @@ interface Telegram {
 export type EventType =
   | "themeChanged"
   | "viewportChanged"
-  | "mainButtonClicked";
+  | "mainButtonClicked"
+  | "backButtonClicked"
 
 interface WebApp {
   /**

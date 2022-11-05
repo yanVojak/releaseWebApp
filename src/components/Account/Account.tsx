@@ -12,12 +12,10 @@ import styles from "./styles.module.scss";
 
 const Account = () => {
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
-  const [test, setTest] = useState(9);
 
   const handleGo = useCallback(() => {
     navigate("/topics");
-  }, [navigate, test]);
+  }, [navigate]);
 
   const {
     setMainButtonOnClick,
@@ -27,16 +25,7 @@ const Account = () => {
 
   useTgBackButton(false);
 
-  useEffect(() => {
-    if(isVisible) {
 
-      setMainButtonParams({is_visible: true, is_active: true, text: 'true'})
-    } else {
-      setMainButtonParams({is_visible: true, is_active: false})
-    }
-  }, [isVisible])
-
-  
   const {t} = useTranslation();
 
   useEffect(() => {

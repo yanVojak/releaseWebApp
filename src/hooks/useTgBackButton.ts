@@ -11,10 +11,12 @@ const useTgBackButton = (isVisibleBackButton: boolean): BackButtonType => {
 
   const setBackButtonOnClick = useCallback(
     (fn: () => void) => {
-      window.Telegram.WebApp.BackButton.onClick(fn);
-      setBackFunction(() => () => fn);
-    },
-    [setBackFunction],
+      window.Telegram.WebApp.onEvent('backButtonClicked', fn);
+
+    return () => {
+      window.Telegram.WebApp.offEvent('backButtonClicked', fn)
+    }
+    }, []
   );
 
   const showBackButton = useCallback(() => {
