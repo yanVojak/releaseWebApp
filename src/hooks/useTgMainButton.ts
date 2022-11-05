@@ -17,10 +17,10 @@ const useTgMainButton = (
 
   const setMainButtonOnClick = useCallback(
     (fn: () => void) => {
-      window.Telegram.WebApp.onEvent('mainButtonClicked', fn);
+      window.Telegram.WebApp.onEvent('mainButtonClicked', () => fn);
 
     return () => {
-      window.Telegram.WebApp.offEvent('mainButtonClicked', fn)
+      window.Telegram.WebApp.offEvent('mainButtonClicked', () => fn)
     }
     }, []);
 
