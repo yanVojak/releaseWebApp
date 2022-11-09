@@ -15,6 +15,7 @@ const Account = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
   const [error, setError] = useState<any>(null);
+  const [test, setTest] = useState<any>(null);
   const handleGo = useCallback(() => {
     navigate("/topics");
   }, [navigate]);
@@ -31,7 +32,8 @@ const Account = () => {
   }, [handleGo, setMainButtonOnClick]);
 
   const makeRequest = useCallback(async () => {
-    
+    setTest(window.Telegram.WebApp.initData);
+
     fetch("https://shark-app-2zmo7.ondigitalocean.app/api/user/1222183809", {
       method: "GET",
       headers: { Authorization: `${window.Telegram.WebApp.initData}` },
@@ -40,13 +42,14 @@ const Account = () => {
     }).catch((e) => {
       setError(e)
     })
-  }, []);
+  }, [setUser, setError, setTest]);
 
   return (
     <div className={styles.container}>
       <div>{window.Telegram.WebApp.initData}</div>
-      <div>{user}</div>
+      <div>user {user}</div>
       <div>error {error}</div>
+      <div>test {test}</div>
       <h2>{t("test")}</h2>
       <button onClick={handleGo}>go</button>
       <button onClick={makeRequest}>request</button>
