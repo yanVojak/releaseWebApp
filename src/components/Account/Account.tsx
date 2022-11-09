@@ -39,7 +39,7 @@ const Account = () => {
       headers: { Authorization: `${window.Telegram.WebApp.initData}` },
     })
     .then((response) => response.json())
-    .then((data) => setUser(data))
+    .then((data) => setUser(data.id))
   }, [setUser, setError, setTest]);
 
   return (
