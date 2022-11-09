@@ -41,6 +41,7 @@ const Account = () => {
   return (
     <div className={styles.container}>
       <div>{window.Telegram.WebApp.initData}</div>
+      <div>{user}</div>
       <h2>{t("test")}</h2>
       <button onClick={handleGo}>go</button>
       <button onClick={makeRequest}>request</button>
