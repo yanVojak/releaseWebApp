@@ -37,11 +37,10 @@ const Account = () => {
     fetch("https://shark-app-2zmo7.ondigitalocean.app/api/user/1222183809", {
       method: "GET",
       headers: { Authorization: `${window.Telegram.WebApp.initData}` },
-    }).then((response) => {
-      setUser(response.json());
-    }).catch((e) => {
-      setError(e)
     })
+    .then((response) => response.json())
+    .then((data) => setUser(data))
+    .catch((e) => setError(e))
   }, [setUser, setError, setTest]);
 
   return (
