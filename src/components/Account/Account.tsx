@@ -40,7 +40,6 @@ const Account = () => {
     })
     .then((response) => response.json())
     .then((data) => setUser(data))
-    .catch((e) => setError(e))
   }, [setUser, setError, setTest]);
 
   return (
