@@ -14,6 +14,7 @@ import styles from "./styles.module.scss";
 const Account = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
+  const [error, setError] = useState<any>(null);
   const handleGo = useCallback(() => {
     navigate("/topics");
   }, [navigate]);
@@ -30,11 +31,14 @@ const Account = () => {
   }, [handleGo, setMainButtonOnClick]);
 
   const makeRequest = useCallback(async () => {
+    
     fetch("https://shark-app-2zmo7.ondigitalocean.app/api/user/1222183809", {
       method: "GET",
       headers: { Authorization: `${window.Telegram.WebApp.initData}` },
     }).then((response) => {
-      setUser(response);
+      setUser(response.json());
+    }).catch((e) => {
+      setError(e)
     })
   }, []);
 
@@ -42,6 +46,7 @@ const Account = () => {
     <div className={styles.container}>
       <div>{window.Telegram.WebApp.initData}</div>
       <div>{user}</div>
+      <div>error {error}</div>
       <h2>{t("test")}</h2>
       <button onClick={handleGo}>go</button>
       <button onClick={makeRequest}>request</button>
