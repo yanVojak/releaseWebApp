@@ -11,7 +11,7 @@
 .testGapC {
     display: flex;
     flex-flow: column nowrap;
-    column-gap: 80px;
+    row-gap: 80px;
     background-color: beige;
 }
 
@@ -20,5 +20,12 @@
     background-color: beige;
     display: flex;
     flex-flow: row nowrap;
-    row-gap: 80px;
+    column-gap: 80px;
+}
+
+.testGapR {
+    background-color: beige;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 80px;
 }

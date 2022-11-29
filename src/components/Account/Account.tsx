@@ -57,6 +57,10 @@ const Account = () => {
       <button onClick={handleGo}>go</button>
       <button onClick={makeRequest}>request</button>
       </div>
+      <div className={styles.testGap}>
+      <button onClick={handleGo}>go</button>
+      <button onClick={makeRequest}>request</button>
+      </div>
     </div>
   );
 };
