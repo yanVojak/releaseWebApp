@@ -7,3 +7,18 @@
         }
     }
 }
+
+.testGapC {
+    display: flex;
+    flex-flow: column nowrap;
+    column-gap: 80px;
+    background-color: beige;
+}
+
+
+.testGapR {
+    background-color: beige;
+    display: flex;
+    flex-flow: row nowrap;
+    row-gap: 80px;
+}

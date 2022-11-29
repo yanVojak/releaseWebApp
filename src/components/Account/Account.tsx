@@ -49,8 +49,14 @@ const Account = () => {
       <div>error {error}</div>
       <div>test {test}</div>
       <h2>{t("test")}</h2>
+      <div className={styles.testGapC}>
       <button onClick={handleGo}>go</button>
       <button onClick={makeRequest}>request</button>
+      </div>
+      <div className={styles.testGapR}>
+      <button onClick={handleGo}>go</button>
+      <button onClick={makeRequest}>request</button>
+      </div>
     </div>
   );
 };
