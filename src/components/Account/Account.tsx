@@ -38,21 +38,6 @@ const Account = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.headerLine}>
-        <div className={styles.item}>
-          <div className={styles.secondaryLogo}>
-            <SecondaryLogo />
-          </div>
-        </div>
-        <div className={classNames(styles.item)}>
-            <LingoLogo className={styles.logo} />
-        </div>
-        <div className={styles.item}>
-          <Link to='' className={styles.account}>
-            <AccountIcon />
-          </Link>
-        </div>
-      </div>
 
       <button onClick={getLocation}>get location</button>
       <p>current location: {location}</p>
