@@ -19,7 +19,18 @@ const Account = () => {
     }
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
+      navigator.geolocation.getCurrentPosition(showPosition, function showError(error) {
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            setlocation("User denied the request for Geolocation.")
+            break;
+          case error.POSITION_UNAVAILABLE:
+            setlocation("Location information is unavailable.")
+            break;
+          case error.TIMEOUT:
+            setlocation("The request to get user location timed out.")
+        }
+      });
     } else {
       setlocation("Geolocation is not supported by this browser.")
     }
