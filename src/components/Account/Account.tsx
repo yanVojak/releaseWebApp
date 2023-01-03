@@ -11,6 +11,18 @@ import SecondaryLogo from "../SecondaryLogo/SecondaryLogo";
 
 const Account = () => {
   const [location, setlocation] = useState<string>();
+  const [userIp, setUserIp] = useState('');
+
+
+  const getUserIp = useCallback(() => {
+    const apiKey = '59b3c5f3c1454cbeb2420a6368a967f4';
+
+    fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey).then((data: Response) => {
+      data.json().then((data) => {
+        setUserIp(data.ip_address)
+      })
+    })
+  }, [setUserIp])
 
   const getLocation = useCallback(() => {
 
@@ -50,6 +62,10 @@ const Account = () => {
 
       <h2>origin</h2>
       <p>{window.location.origin}</p>
+
+      <h2>ip</h2>
+      <button onClick={getUserIp}>get ip</button>
+      <p>{userIp}</p>
     </div>
   );
 };
