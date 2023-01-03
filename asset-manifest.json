@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/releaseWebApp/static/css/main.b370f95c.css",
+    "main.js": "/releaseWebApp/static/js/main.61bf9442.js",
+    "static/js/787.82b2ade5.chunk.js": "/releaseWebApp/static/js/787.82b2ade5.chunk.js",
+    "index.html": "/releaseWebApp/index.html",
+    "main.b370f95c.css.map": "/releaseWebApp/static/css/main.b370f95c.css.map",
+    "main.61bf9442.js.map": "/releaseWebApp/static/js/main.61bf9442.js.map",
+    "787.82b2ade5.chunk.js.map": "/releaseWebApp/static/js/787.82b2ade5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b370f95c.css",
+    "static/js/main.61bf9442.js"
+  ]
+}
