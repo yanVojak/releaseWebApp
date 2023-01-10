@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import RadioItem from "../../components/RadioItem/RadioItem";
 import useTgBackButton from "../../hooks/useTgBackButton";
-import useTelegramMainButton from "../../hooks/useTgMainButton";
 
 export const TopicList = () => {
   const topis = [
@@ -65,7 +64,7 @@ export const TopicList = () => {
         item.trim().toLocaleLowerCase().includes(searchStringText)
       )
     );
-  }, [searchStringText]);
+  }, [searchStringText, setFilteredTopics, topis]);
 
   useEffect(() => {
     if (!currentTopic) {
