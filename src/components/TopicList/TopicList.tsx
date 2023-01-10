@@ -4,7 +4,7 @@ import RadioItem from "../../components/RadioItem/RadioItem";
 import useTgBackButton from "../../hooks/useTgBackButton";
 
 export const TopicList = () => {
-  const topis = [
+  const [topics, setTopics] = useState([
     "Art",
     "Cinema",
     "Sport",
@@ -26,8 +26,8 @@ export const TopicList = () => {
     "eighteenth",
     "ninteeth",
     "twenteenth",
-  ];
-  const [filteredTopics, setFilteredTopics] = useState(topis);
+  ])
+  const [filteredTopics, setFilteredTopics] = useState(topics);
   const [currentTopic, setCurrentTopic] = useState("");
   const [searchStringText, setSearchStringText] = useState("");
   const [questions, setQuestions] = useState<string[]>([]);
@@ -60,11 +60,11 @@ export const TopicList = () => {
 
   useEffect(() => {
     setFilteredTopics(
-      topis.filter((item) =>
+      topics.filter((item) =>
         item.trim().toLocaleLowerCase().includes(searchStringText)
       )
     );
-  }, [searchStringText, setFilteredTopics, topis]);
+  }, [searchStringText, setFilteredTopics, topics]);
 
   useEffect(() => {
     if (!currentTopic) {
