@@ -1,9 +1,6 @@
-import React, { useEffect, lazy, useLayoutEffect } from 'react';
+import React from 'react';
 
-// import { useDispatch } from 'react-redux';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { TopicList } from '../../components/TopicList/TopicList';
-import AccoutnRouter from '../AccountRouter/AccountRouter';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { mapRoutes } from '../map-routing';
 import { routes } from '../routes/mainRoutes';
 
@@ -15,21 +12,9 @@ import { routes } from '../routes/mainRoutes';
 // import { store, StoreKeys } from '@store';
 // import { AppInit } from '@store/initiation/features/app-init/app-init';
 
-import { ACCOUNT_PATH, CREATE_LANGUAGES_PATH, CREATE_PATH, INSTANT_MAIN_PATH, JOIN_LANGUAGES_PATH, JOIN_PATH, MAIN_PATH } from '../routing.constants';
+import {INSTANT_MAIN_PATH, MAIN_PATH } from '../routing.constants';
 
 const MainRouter: React.FC = () => {
-//   const dispatch = useDispatch();
-
-//   const location = useLocation();
-
-//   useEffect(() => {
-//     dispatch(AppInit.action());
-//   }, [dispatch]);
-
-//   useLayoutEffect(() => {
-//     preloadAllSkipActual(location.pathname, [...routes, ...settingsRoutes]);
-//   }, [location.pathname]);
-
   return (
     <div>
       <Routes>

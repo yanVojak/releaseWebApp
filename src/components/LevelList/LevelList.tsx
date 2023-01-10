@@ -1,4 +1,4 @@
-import react, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useParams } from "react-router";
 import RadioItem  from "../../components/RadioItem/RadioItem";
 

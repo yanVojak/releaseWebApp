@@ -1,9 +1,8 @@
-import react, { useState, useCallback, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useCallback, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import RadioItem from "../../components/RadioItem/RadioItem";
 import useTgBackButton from "../../hooks/useTgBackButton";
 import useTelegramMainButton from "../../hooks/useTgMainButton";
-import { MEETING_PATH } from "../../routing/routing.constants";
 
 export const TopicList = () => {
   const topis = [
@@ -37,10 +36,7 @@ export const TopicList = () => {
 
   const navigate = useNavigate();
 
-  const { setMainButtonOnClick, setMainButtonParams, setLoadingMainButton } =
-    useTelegramMainButton(true, false, "confirm");
-
-  const { setBackButtonOnClick, showBackButton, hideBackButton } =
+  const { setBackButtonOnClick } =
     useTgBackButton(true);
 
   const handleBack = useCallback(() => {
@@ -49,20 +45,7 @@ export const TopicList = () => {
 
   useEffect(() => {
     setBackButtonOnClick(handleBack);
-  }, [handleBack]);
-
-  // const {
-  //   hideMainButton,
-  //   showMainButton,
-  //   enableMainButton,
-  //   disabeleMainButton,
-  //   setTextMainButton,
-  //   setBackButtonOnClick
-  // } = useTelegramMainButton(true, true, "back");
-
-  // useEffect(() => {
-  //   setBackButtonOnClick(handleBack)
-  // }, [handleBack, setBackButtonOnClick])
+  }, [handleBack, setBackButtonOnClick]);
 
   const changeTopic = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

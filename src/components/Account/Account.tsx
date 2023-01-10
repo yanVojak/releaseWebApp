@@ -1,13 +1,6 @@
-import react, { useCallback, useState } from "react";
-
-import { ReactComponent as AccountIcon } from '../../assets/account.svg';
-import { ReactComponent as LingoLogo } from '../../assets/lingo-logo.svg';
+import React, { useCallback, useState } from "react";
 
 import styles from "./styles.module.scss";
-
-import classNames from "classnames";
-import { Link } from "react-router-dom";
-import SecondaryLogo from "../SecondaryLogo/SecondaryLogo";
 
 const Account = () => {
   const [location, setlocation] = useState<string>();
