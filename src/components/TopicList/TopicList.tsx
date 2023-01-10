@@ -3,30 +3,28 @@ import { useNavigate } from "react-router-dom";
 import RadioItem from "../../components/RadioItem/RadioItem";
 import useTgBackButton from "../../hooks/useTgBackButton";
 
+const topics = [ "Art",
+"Cinema",
+"Sport",
+"Family",
+"Pets",
+"Test1",
+"Test2",
+"Test3",
+"Test4",
+"Test5",
+"Test6",
+"Test7",
+"elventh",
+"twelves",
+"fourteenth",
+"fivteents",
+"sexteenth",
+"seveteenth",
+"eighteenth",
+"ninteeth",
+"twenteenth",]
 export const TopicList = () => {
-  const [topics, setTopics] = useState([
-    "Art",
-    "Cinema",
-    "Sport",
-    "Family",
-    "Pets",
-    "Test1",
-    "Test2",
-    "Test3",
-    "Test4",
-    "Test5",
-    "Test6",
-    "Test7",
-    "elventh",
-    "twelves",
-    "fourteenth",
-    "fivteents",
-    "sexteenth",
-    "seveteenth",
-    "eighteenth",
-    "ninteeth",
-    "twenteenth",
-  ])
   const [filteredTopics, setFilteredTopics] = useState(topics);
   const [currentTopic, setCurrentTopic] = useState("");
   const [searchStringText, setSearchStringText] = useState("");
@@ -64,7 +62,7 @@ export const TopicList = () => {
         item.trim().toLocaleLowerCase().includes(searchStringText)
       )
     );
-  }, [searchStringText, setFilteredTopics, topics]);
+  }, [searchStringText, setFilteredTopics]);
 
   useEffect(() => {
     if (!currentTopic) {
